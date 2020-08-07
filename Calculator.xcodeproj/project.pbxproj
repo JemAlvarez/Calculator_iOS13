@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CABB4EDC24DCDD7A0061F7A2 /* ButtonsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABB4EDB24DCDD7A0061F7A2 /* ButtonsList.swift */; };
 		CAEC55ED24DB77310059C65D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC55EC24DB77310059C65D /* AppDelegate.swift */; };
 		CAEC55EF24DB77310059C65D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC55EE24DB77310059C65D /* SceneDelegate.swift */; };
 		CAEC55F124DB77310059C65D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC55F024DB77310059C65D /* ContentView.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CABB4EDB24DCDD7A0061F7A2 /* ButtonsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsList.swift; sourceTree = "<group>"; };
 		CAEC55E924DB77310059C65D /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAEC55EC24DB77310059C65D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAEC55EE24DB77310059C65D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				CAEC560324DB795B0059C65D /* ButtonModel.swift */,
+				CABB4EDB24DCDD7A0061F7A2 /* ButtonsList.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 				CAEC560824DC27500059C65D /* ButtonView.swift in Sources */,
 				CAEC55EF24DB77310059C65D /* SceneDelegate.swift in Sources */,
 				CAEC55F124DB77310059C65D /* ContentView.swift in Sources */,
+				CABB4EDC24DCDD7A0061F7A2 /* ButtonsList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,7 +332,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jemalvarez.Calculator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -348,7 +352,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jemalvarez.Calculator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -9,7 +9,8 @@
 import Foundation
 import SwiftUI
 
-struct ButtonModel {
+struct ButtonModel: Identifiable {
+    let id = UUID()
     let backgroundColorString: String?
     let number: Int?
     let function: String?

@@ -11,6 +11,8 @@ import SwiftUI
 struct ButtonView: View {
     var button: ButtonModel
     
+    let screenWidth = UIScreen.main.bounds.size.width
+    
     var body: some View {
         Group {
             if button.number != nil {
@@ -23,16 +25,18 @@ struct ButtonView: View {
                 Text("N/A")
             }
         }
-        .frame(width: button.number == 0 ? 149 : 65, height: button.function == nil ? 65 : 45)
+        .frame(width: button.number == 0 ? screenWidth / 2.47 : screenWidth / 5.5, height: button.function == nil ? screenWidth / 5.5 : screenWidth / 7.5)
         .background(button.backgroundColor.opacity(button.backgroundColorString == nil ? 0.1 : button.backgroundColorString == "Red" ? 0.2 : 1))
         .foregroundColor(button.foregroundColor)
         .cornerRadius(button.function != nil ? 20 :23)
-        .font(.system(size: 20, weight: .semibold))
+        .font(.system(size: 25, weight: .semibold))
     }
 }
 
 struct ButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        ButtonView(button: ButtonModel(backgroundColorString: nil, number: nil, function: nil, sign: "deg"))
+        ButtonView(button: ButtonModel(backgroundColorString: nil, number: nil, function:
+            "deg", sign:
+        nil))
     }
 }

@@ -9,15 +9,27 @@
 import SwiftUI
 
 struct ContentView: View {
+    let rowColSpacing = UIScreen.main.bounds.size.width / 25
+    
     var body: some View {
-        VStack{
-            ButtonView(button: ButtonModel(backgroundColorString: nil, number: nil, function: "deg", sign: nil))
-            ButtonView(button: ButtonModel(backgroundColorString: "Red", number: nil, function: nil, sign: "C"))
-            ButtonView(button: ButtonModel(backgroundColorString: "Green", number: nil, function: nil, sign: "="))
-            ButtonView(button: ButtonModel(backgroundColorString: "Orange", number: nil, function: nil, sign: "+"))
-            ButtonView(button: ButtonModel(backgroundColorString: nil, number: 0, function: nil, sign: nil))
-            ButtonView(button: ButtonModel(backgroundColorString: nil, number: 8, function: nil, sign: nil))
+        VStack(spacing: rowColSpacing) {
+            Spacer()
+            
+            Text("123,415,678")
+                .font(.system(size: UIScreen.main.bounds.size.width * 0.1328, weight: .semibold))
+                .frame(maxWidth: .infinity, alignment: .trailing)
+                .padding(.horizontal, UIScreen.main.bounds.size.width / 10)
+                .padding(.bottom, 20)
+            
+            ForEach(0..<ButtonsList.buttons.count) { i in
+                HStack (spacing: self.rowColSpacing) {
+                    ForEach(0..<ButtonsList.buttons[i].count) { j in
+                        ButtonView(button: ButtonsList.buttons[i][j])
+                    }
+                }
+            }
         }
+        .padding(.bottom, 20)
     }
 }
 
