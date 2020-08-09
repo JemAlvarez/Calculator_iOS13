@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA9581C624DF841B00541374 /* CalculatorModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9581C524DF841B00541374 /* CalculatorModelView.swift */; };
 		CABB4EDC24DCDD7A0061F7A2 /* ButtonsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABB4EDB24DCDD7A0061F7A2 /* ButtonsList.swift */; };
 		CAEC55ED24DB77310059C65D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC55EC24DB77310059C65D /* AppDelegate.swift */; };
 		CAEC55EF24DB77310059C65D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC55EE24DB77310059C65D /* SceneDelegate.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CA9581C524DF841B00541374 /* CalculatorModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorModelView.swift; sourceTree = "<group>"; };
 		CABB4EDB24DCDD7A0061F7A2 /* ButtonsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsList.swift; sourceTree = "<group>"; };
 		CAEC55E924DB77310059C65D /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAEC55EC24DB77310059C65D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 		CAEC560224DB78F70059C65D /* ModelView */ = {
 			isa = PBXGroup;
 			children = (
+				CA9581C524DF841B00541374 /* CalculatorModelView.swift */,
 			);
 			path = ModelView;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAEC55ED24DB77310059C65D /* AppDelegate.swift in Sources */,
+				CA9581C624DF841B00541374 /* CalculatorModelView.swift in Sources */,
 				CAEC560424DB795B0059C65D /* ButtonModel.swift in Sources */,
 				CAEC560824DC27500059C65D /* ButtonView.swift in Sources */,
 				CAEC55EF24DB77310059C65D /* SceneDelegate.swift in Sources */,

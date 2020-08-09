@@ -42,14 +42,8 @@ struct ButtonsList {
         ],
         [
             ButtonModel(backgroundColorString: nil, number: 0, function: nil, sign: nil),
-            ButtonModel(backgroundColorString: nil, number: nil, function: nil, sign: "•"),
+            ButtonModel(backgroundColorString: nil, number: 10, function: nil, sign: nil),
             ButtonModel(backgroundColorString: "Green", number: nil, function: nil, sign: "=")
         ]
-    ]
-    
-    static let lastRow = [
-        ButtonModel(backgroundColorString: nil, number: 0, function: nil, sign: nil),
-        ButtonModel(backgroundColorString: nil, number: nil, function: nil, sign: "."),
-        ButtonModel(backgroundColorString: "Green", number: nil, function: nil, sign: "=")
     ]
 }
