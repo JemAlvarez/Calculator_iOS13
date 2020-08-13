@@ -21,6 +21,12 @@ struct ContentView: View {
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(.horizontal, UIScreen.main.bounds.size.width / 10)
                 .padding(.bottom, 20)
+                .gesture(
+                        DragGesture()
+                            .onEnded { _ in
+                                self.model.erase()
+                        }
+                )
             
             ForEach(0..<ButtonsList.buttons.count) { i in
                 HStack (spacing: self.rowColSpacing) {

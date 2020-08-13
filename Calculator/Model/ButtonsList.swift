@@ -14,7 +14,7 @@ struct ButtonsList {
             ButtonModel(backgroundColorString: nil, number: nil, function: "π", sign: nil),
             ButtonModel(backgroundColorString: nil, number: nil, function: "e", sign: nil),
             ButtonModel(backgroundColorString: nil, number: nil, function: "√", sign: nil),
-            ButtonModel(backgroundColorString: nil, number: nil, function: "|x|", sign: nil)
+            ButtonModel(backgroundColorString: nil, number: nil, function: "_", sign: nil)
         ],
         [
             ButtonModel(backgroundColorString: "Red", number: nil, function: nil, sign: "C"),

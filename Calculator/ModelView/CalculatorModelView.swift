@@ -30,6 +30,12 @@ class CalculatorModelView: ObservableObject {
         signToHighlight = ""
     }
     
+    func erase() {
+        if currentNum.count > 1 && !resetCurrentNum {
+            currentNum = formatNumber(from: String(currentNum.dropLast()))
+        }
+    }
+    
     func formatNumber(from str: String) -> String {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
@@ -49,11 +55,19 @@ class CalculatorModelView: ObservableObject {
         }
         
         if num == "10" {
-            currentNum += "."
-        } else  {
+            if !currentNum.contains(".") {
+                if currentNum == "" {
+                    currentNum += "0."
+                } else {
+                    currentNum += "."
+                }
+            }
+        } else {
             currentNum += num
             
-            currentNum = formatNumber(from: currentNum)
+            if !currentNum.contains(".") {
+                currentNum = formatNumber(from: currentNum)
+            }
         }
 
         signToHighlight = ""
