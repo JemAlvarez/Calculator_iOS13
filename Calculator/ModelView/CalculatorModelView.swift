@@ -30,8 +30,16 @@ class CalculatorModelView: ObservableObject {
         signToHighlight = ""
     }
     
+    func formatNumber(from str: String) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        let rawNum = numberFormatter.number(from: str.replacingOccurrences(of: ",", with: ""))
+        let formattedString = numberFormatter.string(from: rawNum!)
+        return formattedString!
+    }
+    
     func getCurrentNum(num: String) {
-        if currentNum.count > 8 {
+        if currentNum.count > 10 && !resetCurrentNum {
             return
         }
         
@@ -44,6 +52,8 @@ class CalculatorModelView: ObservableObject {
             currentNum += "."
         } else  {
             currentNum += num
+            
+            currentNum = formatNumber(from: currentNum)
         }
 
         signToHighlight = ""
@@ -64,9 +74,9 @@ class CalculatorModelView: ObservableObject {
         }
         
         if num1 == 0 {
-            num1 = Double(currentNum)!
+            num1 = Double(currentNum.replacingOccurrences(of: ",", with: ""))!
         } else if num2 == 0 {
-            num2 = Double(currentNum)!
+            num2 = Double(currentNum.replacingOccurrences(of: ",", with: ""))!
         }
         
         if firstCalc {
@@ -79,7 +89,7 @@ class CalculatorModelView: ObservableObject {
         if sign == "=" {
             let temp = result
             reset()
-            currentNum = temp.removeZerosFromEnd()
+            currentNum = formatNumber(from: temp.removeZerosFromEnd())
         } else {
             self.sign = sign
         }
@@ -96,7 +106,7 @@ class CalculatorModelView: ObservableObject {
             result = num1 * num2
         }
         
-        currentNum = result.removeZerosFromEnd()
+        currentNum = formatNumber(from: result.removeZerosFromEnd())
         num1 = result
         num2 = 0
     }

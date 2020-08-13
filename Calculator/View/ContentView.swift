@@ -17,7 +17,7 @@ struct ContentView: View {
             Spacer()
             
             Text("\(model.currentNum)")
-                .font(.system(size: UIScreen.main.bounds.size.width * 0.1328, weight: .semibold))
+                .font(.system(size: UIScreen.main.bounds.size.width * 0.1328, weight: .regular))
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(.horizontal, UIScreen.main.bounds.size.width / 10)
                 .padding(.bottom, 20)
