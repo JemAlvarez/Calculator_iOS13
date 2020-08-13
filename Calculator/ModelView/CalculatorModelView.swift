@@ -11,6 +11,7 @@ import Foundation
 class CalculatorModelView: ObservableObject {
     @Published var currentNum: String = "0"
     @Published var signToHighlight: String = ""
+    @Published var shouldErase: Bool = true
     
     var result: Double = 0
     var num1: Double = 0
@@ -31,7 +32,7 @@ class CalculatorModelView: ObservableObject {
     }
     
     func erase() {
-        if currentNum.count > 1 && !resetCurrentNum {
+        if currentNum.count > 1 && !resetCurrentNum && shouldErase {
             currentNum = formatNumber(from: String(currentNum.dropLast()))
         }
     }

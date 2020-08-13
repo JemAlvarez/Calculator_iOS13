@@ -14,19 +14,32 @@ struct ContentView: View {
     
     var body: some View {
         VStack(spacing: rowColSpacing) {
-            Spacer()
-            
-            Text("\(model.currentNum)")
-                .font(.system(size: UIScreen.main.bounds.size.width * 0.1328, weight: .regular))
-                .frame(maxWidth: .infinity, alignment: .trailing)
-                .padding(.horizontal, UIScreen.main.bounds.size.width / 10)
-                .padding(.bottom, 20)
-                .gesture(
-                        DragGesture()
-                            .onEnded { _ in
-                                self.model.erase()
+            VStack {
+                Spacer()
+                
+                Text("\(model.currentNum)")
+                    .font(.system(size: UIScreen.main.bounds.size.width * 0.1328, weight: .regular))
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .padding(.horizontal, UIScreen.main.bounds.size.width / 10)
+                    .padding(.bottom, 20)
+                    .frame(width: UIScreen.main.bounds.size.width)
+            }
+            .contentShape(Rectangle())
+            .gesture(
+                    DragGesture()
+                        .onChanged { gesture in
+                            if abs(gesture.location.y - gesture.startLocation.y) < 20 {
+                                if abs(gesture.location.x - gesture.startLocation.x) > 50 {
+                                    self.model.erase()
+                                    self.model.shouldErase = false
+                                }
+                            }
                         }
-                )
+                        
+                        .onEnded { _ in
+                            self.model.shouldErase = true
+                        }
+            )
             
             ForEach(0..<ButtonsList.buttons.count) { i in
                 HStack (spacing: self.rowColSpacing) {
