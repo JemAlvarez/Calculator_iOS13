@@ -16,9 +16,16 @@ class CalculatorModelView: ObservableObject {
     var result: Double = 0
     var num1: Double = 0
     var num2: Double = 0
+    var sign: String = ""
     var resetCurrentNum: Bool = true
     var firstCalc: Bool = true
-    var sign: String = ""
+    var canType: Bool {
+        if currentNum.replacingOccurrences(of: ".", with: "").replacingOccurrences(of: ",", with: "").count >= 9 && !resetCurrentNum {
+            return false
+        }
+        
+        return true
+    }
     
     func reset() {
         num1 = 0
@@ -46,7 +53,7 @@ class CalculatorModelView: ObservableObject {
     }
     
     func getCurrentNum(num: String) {
-        if currentNum.replacingOccurrences(of: ".", with: "").count > 10 && !resetCurrentNum {
+        if !canType {
             return
         }
         
@@ -102,14 +109,20 @@ class CalculatorModelView: ObservableObject {
         calculate()
         
         if sign == "=" {
-            let temp = formatNumber(from: result.removeZerosFromEnd()).replacingOccurrences(of: ",", with: "")
+            let tempResult = result
             
             reset()
             
-            if temp.count > 9 {
-                currentNum = Double(temp)!.scientificFormatted
+            if "\(tempResult)".contains("e-"){
+                currentNum = "\(tempResult)"
             } else {
-                currentNum = temp
+                let tempFormatted = formatNumber(from: tempResult.removeZerosFromEnd()).replacingOccurrences(of: ",", with: "")
+                
+                if tempFormatted.count > 9 {
+                    currentNum = Double(tempFormatted)!.scientificFormatted
+                } else {
+                    currentNum = tempFormatted
+                }
             }
         } else {
             self.sign = sign
@@ -127,12 +140,16 @@ class CalculatorModelView: ObservableObject {
             result = num1 * num2
         }
         
-        let finalResult = formatNumber(from: result.removeZerosFromEnd()).replacingOccurrences(of: ",", with: "")
-        
-        if finalResult.count > 9 {
-            currentNum = Double(finalResult)!.scientificFormatted
+        if "\(result)".contains("e-"){
+            currentNum = "\(result)"
         } else {
-            currentNum = formatNumber(from: result.removeZerosFromEnd())
+            let finalResult = formatNumber(from: result.removeZerosFromEnd()).replacingOccurrences(of: ",", with: "")
+            
+            if finalResult.count > 9 {
+                currentNum = Double(finalResult)!.scientificFormatted
+            } else {
+                currentNum = formatNumber(from: result.removeZerosFromEnd())
+            }
         }
         
         num1 = result
