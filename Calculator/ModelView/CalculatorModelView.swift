@@ -114,7 +114,10 @@ class CalculatorModelView: ObservableObject {
             reset()
             
             if "\(tempResult)".contains("e-"){
-                currentNum = "\(tempResult)"
+                let numberString = "\(tempResult)"
+                let firstNumber = numberString[numberString.startIndex]
+                let exponent = numberString[(numberString.firstIndex(of: Character("e")) ?? numberString.startIndex)..<numberString.endIndex]
+                currentNum = "\(firstNumber)\(exponent)"
             } else {
                 let tempFormatted = formatNumber(from: tempResult.removeZerosFromEnd()).replacingOccurrences(of: ",", with: "")
                 
@@ -141,7 +144,10 @@ class CalculatorModelView: ObservableObject {
         }
         
         if "\(result)".contains("e-"){
-            currentNum = "\(result)"
+            let numberString = "\(result)"
+            let firstNumber = numberString[numberString.startIndex]
+            let exponent = numberString[(numberString.firstIndex(of: Character("e")) ?? numberString.startIndex)..<numberString.endIndex]
+            currentNum = "\(firstNumber)\(exponent)"
         } else {
             let finalResult = formatNumber(from: result.removeZerosFromEnd()).replacingOccurrences(of: ",", with: "")
             
