@@ -46,7 +46,7 @@ class CalculatorModelView: ObservableObject {
     }
     
     func getCurrentNum(num: String) {
-        if currentNum.count > 10 && !resetCurrentNum {
+        if currentNum.replacingOccurrences(of: ".", with: "").count > 10 && !resetCurrentNum {
             return
         }
         
@@ -102,9 +102,15 @@ class CalculatorModelView: ObservableObject {
         calculate()
         
         if sign == "=" {
-            let temp = result
+            let temp = formatNumber(from: result.removeZerosFromEnd()).replacingOccurrences(of: ",", with: "")
+            
             reset()
-            currentNum = formatNumber(from: temp.removeZerosFromEnd())
+            
+            if temp.count > 9 {
+                currentNum = Double(temp)!.scientificFormatted
+            } else {
+                currentNum = temp
+            }
         } else {
             self.sign = sign
         }
@@ -121,7 +127,14 @@ class CalculatorModelView: ObservableObject {
             result = num1 * num2
         }
         
-        currentNum = formatNumber(from: result.removeZerosFromEnd())
+        let finalResult = formatNumber(from: result.removeZerosFromEnd()).replacingOccurrences(of: ",", with: "")
+        
+        if finalResult.count > 9 {
+            currentNum = Double(finalResult)!.scientificFormatted
+        } else {
+            currentNum = formatNumber(from: result.removeZerosFromEnd())
+        }
+        
         num1 = result
         num2 = 0
     }
@@ -134,5 +147,21 @@ extension Double {
         formatter.minimumFractionDigits = 0
         formatter.maximumFractionDigits = 16 //maximum digits in Double after dot (maximum precision)
         return String(formatter.string(from: number) ?? "")
+    }
+}
+
+extension Formatter {
+    static let scientific: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .scientific
+        formatter.positiveFormat = "0.###E+0"
+        formatter.exponentSymbol = "e"
+        return formatter
+    }()
+}
+
+extension Numeric {
+    var scientificFormatted: String {
+        return Formatter.scientific.string(for: self) ?? ""
     }
 }
