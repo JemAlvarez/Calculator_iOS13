@@ -84,6 +84,10 @@ class CalculatorModelView: ObservableObject {
     func getSign(sign: String) {
         resetCurrentNum = true
         
+        if currentNum == "Error" {
+            currentNum = "0"
+        }
+        
         if sign != "=" {
             signToHighlight = sign
             
@@ -109,6 +113,10 @@ class CalculatorModelView: ObservableObject {
         calculate()
         
         if sign == "=" {
+            if currentNum == "Error" {
+                return
+            }
+            
             let tempResult = result
             
             reset()
@@ -124,7 +132,7 @@ class CalculatorModelView: ObservableObject {
                 if tempFormatted.count > 9 {
                     currentNum = Double(tempFormatted)!.scientificFormatted
                 } else {
-                    currentNum = tempFormatted
+                    currentNum = formatNumber(from: Double(tempFormatted)!.removeZerosFromEnd())
                 }
             }
         } else {
@@ -138,7 +146,13 @@ class CalculatorModelView: ObservableObject {
         } else if sign == "-" {
             result = num1 - num2
         } else if sign == "÷" {
-            result = num1 / num2
+            if num2 == 0 {
+                reset()
+                currentNum = "Error"
+                return
+            } else {
+                result = num1 / num2
+            }
         } else if sign == "x" {
             result = num1 * num2
         }
