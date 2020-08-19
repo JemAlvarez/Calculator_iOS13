@@ -62,6 +62,8 @@ struct ContentView: View {
             self.model.reset()
         } else if btn.sign != nil && btn.sign != "C" {
             self.model.getSign(sign: btn.sign!)
+        } else if btn.function != nil {
+            self.model.function(type: btn.function!)
         }
     }
 }

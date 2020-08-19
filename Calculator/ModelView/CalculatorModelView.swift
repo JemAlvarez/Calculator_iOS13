@@ -52,6 +52,35 @@ class CalculatorModelView: ObservableObject {
         return formattedString!
     }
     
+    func function(type: String) {
+        if type == ":)" {
+            return
+        }
+        
+        resetCurrentNum = false
+        
+        if type == "√" {
+            let sqrt = Double(currentNum.replacingOccurrences(of: ",", with: ""))!.squareRoot()
+            currentNum = formatNumber(from: sqrt.removeZerosFromEnd())
+        } else if type == "e" {
+            let e = 2.71828183
+            currentNum = "\(e)"
+        } else if type == "π" {
+            let pi = 3.14159265
+            currentNum = "\(pi)"
+        } else if type == "+/-" {
+            let num = Double(currentNum.replacingOccurrences(of: ",", with: ""))!
+            if num < 0 {
+                currentNum.remove(at: currentNum.startIndex)
+            } else if num > 0 {
+                currentNum = "-" + currentNum
+            }
+        } else if type == "%" {
+            let percentage = Double(currentNum.replacingOccurrences(of: ",", with: ""))! / 100
+            currentNum = formatNumber(from: percentage.removeZerosFromEnd())
+        }
+    }
+    
     func getCurrentNum(num: String) {
         if !canType {
             return
